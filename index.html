@@ -5,13 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Biology Tools</title>
   <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/theme.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <p class="site-title"><a href="./">Biology Tools</a></p>
+      <p class="site-title">
+        <a href="./">
+          <span class="logo-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="10" cy="10" r="2.5"/><circle cx="15" cy="15" r="1.2"/></svg>
+          </span>
+          Biology Tools
+        </a>
+      </p>
       <button type="button" class="button theme-toggle" data-theme-toggle aria-pressed="false">
         <span data-theme-icon aria-hidden="true">☾</span>
         <span>Dark theme</span>
@@ -20,17 +30,28 @@
   </header>
 
   <main class="container">
-    <h1>Biology Tools</h1>
-    <p class="intro">Small, hands-on web tools for learning biology. Pick a tool to try it out.</p>
+    <section class="hero">
+      <h1>Biology Tools</h1>
+      <p class="intro">Small, hands-on web tools for learning biology. Pick a tool to try it out.</p>
+    </section>
 
     <h2>Tools</h2>
     <!-- Add one <li class="card"> per tool. Each links to tools/<tool-name>/ -->
     <ul class="card-grid">
       <li class="card">
-        <span class="tag">Human body</span>
+        <div class="card-top">
+          <span class="card-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 33s-12-7-12-16a6.5 6.5 0 0 1 12-3.5A6.5 6.5 0 0 1 32 17c0 9-12 16-12 16z"/></svg>
+          </span>
+          <span class="tag">Human body</span>
+        </div>
         <h3>Blood Flow Through the Heart</h3>
         <p>Follow blood step by step through the heart, lungs and body, then test yourself by putting the stops in order.</p>
-        <a class="button" href="tools/heart-blood-flow/">Open tool</a>
+        <a class="button button-primary" href="tools/heart-blood-flow/">Open tool →</a>
+      </li>
+      <li class="card card-placeholder">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        <p>More tools coming soon</p>
       </li>
     </ul>
   </main>

@@ -34,9 +34,10 @@ A web portal where biology students try out small web tools.
 
 ### Portal structure
 
-- **Homepage** (`index.html`): site name, theme toggle, and a grid of
-  tool cards. Each card has a title, a topic tag, a one-line
-  description and an "Open tool" link.
+- **Homepage** (`index.html`): site name, theme toggle, an intro
+  panel and a grid of tool cards. Each card has an icon, a topic tag,
+  a title, a one-line description and an "Open tool" button. A dashed
+  "More tools coming soon" card ends the grid.
 - **Opening a tool**: a card links to `tools/<tool-name>/`. Every tool
   page has the same header and an "← All tools" link back to the
   homepage. The chosen theme carries over between pages.
@@ -51,14 +52,17 @@ A web portal where biology students try out small web tools.
 **Phase 1: portal + first tool**
 - [x] Homepage, shared styles and theme toggle. Tested with a
   placeholder card, "Tool 1 — coming soon" (`tools/tool-1/`), which
-  opens and links back to the homepage. Styling is neutral for now.
+  opens and links back to the homepage.
 - [x] First tool, replacing the placeholder: *Blood Flow Through the
   Heart* (`tools/heart-blood-flow/`). Students step through the 14
   stops on a labelled drawing of the heart, lungs and body, with
   moving blood drops (still drops for visitors whose device is set to
   reduce motion), using Back/Next or the arrow keys, then
-  put 8 key stops in order in a short quiz and get a score. Styling
-  is plain for now.
+  put 8 key stops in order in a short quiz and get a score.
+- [x] Visual design: "Bright Classroom", chosen from three options.
+  Lexend for headings, Atkinson Hyperlegible for body text (both
+  loaded from Google Fonts), indigo with coral accents, rounded
+  cards and buttons. Colors live in `css/styles.css`.
 
 **Phase 2: more tools** (to be decided)
 - Add more biology tools, one folder and one card each.

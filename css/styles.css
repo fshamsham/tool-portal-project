@@ -1,5 +1,7 @@
 /* Shared styles for every page in the portal.
-   Deliberately plain and neutral: the visual design comes later.
+   Visual design: "Bright Classroom". Lexend for headings, Atkinson
+   Hyperlegible (a font designed to be easy to read) for body text,
+   indigo and coral colors.
    All colors live in CSS variables so the light and dark themes
    swap them in one place. */
 
@@ -7,19 +9,27 @@
 :root[data-theme="light"] {
   color-scheme: light;
   --bg: #ffffff;
-  --surface: #f4f4f4;
-  --text: #1a1a1a;
-  --muted: #4d4d4d;
-  --border: #b8b8b8;
+  --surface: #f1effd;
+  --text: #1e1b4b;
+  --muted: #4c4a73;
+  --border: #dedaf7;
+  --accent: #4338ca;
+  --on-accent: #ffffff;
+  --tag-bg: #ffe4dc;
+  --tag-text: #9a2b12;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #161616;
-  --surface: #222222;
-  --text: #ececec;
-  --muted: #b5b5b5;
-  --border: #555555;
+  --bg: #15132b;
+  --surface: #211e40;
+  --text: #eeedfb;
+  --muted: #b4b1d6;
+  --border: #34305c;
+  --accent: #a5b4fc;
+  --on-accent: #15132b;
+  --tag-bg: #4a2418;
+  --tag-text: #ffc8b5;
 }
 
 *,
@@ -32,16 +42,26 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1.125rem;
   line-height: 1.6;
 }
 
+h1,
+h2,
+h3,
+.site-title {
+  font-family: "Lexend", system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 a {
-  color: var(--text);
+  color: var(--accent);
 }
 
 :focus-visible {
-  outline: 3px solid var(--text);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -54,27 +74,38 @@ a {
 
 /* Header */
 
-.site-header {
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-
 .site-header .container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 64px;
+  min-height: 80px;
+  padding-block: 12px;
 }
 
 .site-title {
   margin: 0;
   font-size: 1.25rem;
-  font-weight: 700;
 }
 
 .site-title a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
   text-decoration: none;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* Buttons (also used for links that look like buttons) */
@@ -82,21 +113,32 @@ a {
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
   min-height: 44px;
-  padding: 8px 16px;
-  border: 2px solid var(--text);
-  border-radius: 6px;
-  background: transparent;
+  padding: 8px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
   color: var(--text);
   font: inherit;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
 }
 
 .button:hover {
-  background: var(--surface);
+  border-color: var(--accent);
+}
+
+/* The main action on a page or card */
+.button-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: "Lexend", system-ui, sans-serif;
+  font-weight: 500;
 }
 
 .button:disabled {
@@ -108,25 +150,45 @@ a {
 
 .theme-toggle {
   flex-shrink: 0;
+  border-color: transparent;
 }
 
 /* Main content */
 
 main {
-  padding: 32px 0 48px;
+  padding: 16px 0 64px;
 }
 
 .intro {
-  max-width: 65ch;
+  max-width: 60ch;
+  margin: 16px 0 0;
   color: var(--muted);
+  font-size: 1.2rem;
+}
+
+/* The intro panel at the top of the homepage */
+.hero {
+  padding: 32px 24px;
+  border-radius: 24px;
+  background: var(--surface);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2.25rem;
+}
+
+h2 {
+  margin: 48px 0 24px;
+  font-size: 1.6rem;
 }
 
 /* Tool cards: one column on phones, more as the screen widens */
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -135,16 +197,34 @@ main {
 .card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
+  gap: 12px;
+  padding: 24px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
 }
 
 .card h3 {
-  margin: 0;
-  font-size: 1.2rem;
+  margin: 4px 0 0;
+  font-size: 1.4rem;
 }
 
 .card p {
@@ -153,16 +233,33 @@ main {
 }
 
 .tag {
-  align-self: flex-start;
-  padding: 0 10px;
-  border: 1px solid var(--border);
+  padding: 4px 12px;
   border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
   font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .card .button {
-  align-self: flex-start;
   margin-top: auto;
+  min-height: 48px;
+}
+
+/* Dashed card that marks where future tools will appear */
+.card-placeholder {
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  border-style: dashed;
+  color: var(--muted);
+  text-align: center;
+}
+
+.card-placeholder p {
+  font-family: "Lexend", system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 /* Tool pages */
@@ -170,21 +267,56 @@ main {
 .back-link {
   display: inline-block;
   padding: 8px 0;
+  font-weight: 700;
 }
 
 .site-footer {
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border);
   padding: 24px 0;
   color: var(--muted);
-  font-size: 0.875rem;
+  font-size: 0.95rem;
+}
+
+/* Small phones: keep the site name and theme button on one line */
+@media (max-width: 420px) {
+  .site-header .container {
+    flex-wrap: nowrap;
+  }
+
+  .site-title {
+    min-width: 0;
+    font-size: 1.1rem;
+  }
+
+  .site-title a {
+    gap: 10px;
+  }
+
+  .logo-mark {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-toggle {
+    padding-inline: 12px;
+  }
 }
 
 @media (min-width: 600px) {
-  .site-title {
-    font-size: 1.5rem;
+  .container {
+    padding-inline: 24px;
   }
 
-  main {
-    padding-top: 48px;
+  .site-title {
+    font-size: 1.4rem;
+  }
+
+  .hero {
+    padding: 48px 40px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
   }
 }

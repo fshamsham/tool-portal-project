@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blood Flow Through the Heart · Biology Tools</title>
   <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;700&display=swap">
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="heart.css">
   <script src="../../js/theme.js" defer></script>
@@ -13,7 +16,14 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <p class="site-title"><a href="../../">Biology Tools</a></p>
+      <p class="site-title">
+        <a href="../../">
+          <span class="logo-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="10" cy="10" r="2.5"/><circle cx="15" cy="15" r="1.2"/></svg>
+          </span>
+          Biology Tools
+        </a>
+      </p>
       <button type="button" class="button theme-toggle" data-theme-toggle aria-pressed="false">
         <span data-theme-icon aria-hidden="true">☾</span>
         <span>Dark theme</span>
@@ -188,7 +198,7 @@
 
           <div class="step-controls">
             <button type="button" class="button" id="step-back">← Back</button>
-            <button type="button" class="button" id="step-next">Next →</button>
+            <button type="button" class="button button-primary" id="step-next">Next →</button>
           </div>
           <p class="hint">Tip: you can also use the ← and → arrow keys.</p>
         </div>
@@ -203,7 +213,7 @@
       <ol class="quiz-list" id="quiz-list"></ol>
 
       <div class="quiz-controls">
-        <button type="button" class="button" id="quiz-check">Check answer</button>
+        <button type="button" class="button button-primary" id="quiz-check">Check answer</button>
         <button type="button" class="button" id="quiz-show">Show correct order</button>
         <button type="button" class="button" id="quiz-reset">Try again</button>
       </div>

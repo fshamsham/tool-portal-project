@@ -16,7 +16,7 @@
   --muscle-edge: #9c5f56;
   --lung: #f5d0d5;
   --lung-edge: #b98088;
-  --neutral-fill: #ececec;
+  --neutral-fill: #ece9fb;
   --correct: #1d6b35;
   --incorrect: #a8231b;
 }
@@ -26,7 +26,7 @@
   --muscle-edge: #b07a72;
   --lung: #4a2c33;
   --lung-edge: #8a5a63;
-  --neutral-fill: #2c2c2c;
+  --neutral-fill: #2a2650;
   --correct: #7ad69a;
   --incorrect: #ff9a90;
 }
@@ -180,7 +180,7 @@ rect.o2-rich:not(.shape) { stroke: none; }
   min-height: 15rem;
   padding: 16px 20px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 16px;
   background: var(--surface);
 }
 
@@ -232,7 +232,7 @@ rect.o2-rich:not(.shape) { stroke: none; }
   margin-bottom: 8px;
   padding: 8px 8px 8px 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--surface);
   counter-increment: stop;
 }
