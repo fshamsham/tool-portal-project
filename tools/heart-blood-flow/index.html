@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blood Flow Through the Heart · Biology Tools</title>
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="heart.css">
+  <script src="../../js/theme.js" defer></script>
+  <script src="heart.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="site-title"><a href="../../">Biology Tools</a></p>
+      <button type="button" class="button theme-toggle" data-theme-toggle aria-pressed="false">
+        <span data-theme-icon aria-hidden="true">☾</span>
+        <span>Dark theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="back-link" href="../../">← All tools</a>
+    <h1>Blood Flow Through the Heart</h1>
+    <p class="intro">Follow blood on its loop through the heart, the lungs and the body, one stop at a time. Then check yourself with a short quiz.</p>
+
+    <!-- Part 1: step through the diagram -->
+    <section class="learn" aria-labelledby="learn-heading">
+      <h2 id="learn-heading">1. Learn the path</h2>
+
+      <div class="learn-layout">
+        <figure class="diagram">
+          <svg viewBox="0 0 500 556" role="img" aria-labelledby="diagram-title diagram-desc">
+            <title id="diagram-title">Simplified diagram of the heart</title>
+            <desc id="diagram-desc">The heart's four chambers, four valves and main blood vessels, with the lungs at the top and the body at the bottom. The part for the current step is outlined.</desc>
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+                <path class="arrow-head" d="M0 0 L10 5 L0 10 z"/>
+              </marker>
+            </defs>
+
+            <!-- Arrows showing which way blood flows -->
+            <g class="flow" aria-hidden="true">
+              <line x1="25" y1="497" x2="25" y2="481"/>
+              <line x1="45" y1="188" x2="58" y2="188"/>
+              <line x1="130" y1="239" x2="130" y2="250"/>
+              <line x1="130" y1="283" x2="130" y2="294"/>
+              <line x1="246" y1="79" x2="246" y2="62"/>
+              <line x1="360" y1="62" x2="360" y2="78"/>
+              <line x1="360" y1="121" x2="360" y2="136"/>
+              <line x1="360" y1="239" x2="360" y2="250"/>
+              <line x1="360" y1="283" x2="360" y2="294"/>
+              <line x1="479" y1="479" x2="479" y2="496"/>
+            </g>
+
+            <!-- Each part has a data-part name that heart.js highlights -->
+            <g class="part neutral" data-part="lungs">
+              <rect x="150" y="10" width="280" height="50" rx="25"/>
+              <text x="290" y="35">Lungs</text>
+            </g>
+            <g class="part neutral" data-part="body">
+              <rect x="6" y="498" width="490" height="50" rx="12"/>
+              <text x="251" y="523">Body</text>
+            </g>
+
+            <!-- Right side of the heart (drawn on the left): oxygen-poor blood -->
+            <g class="part o2-poor" data-part="vena-cavae">
+              <rect x="6" y="138" width="38" height="340" rx="6"/>
+              <text class="small" transform="translate(25 308) rotate(-90)">Vena cavae</text>
+            </g>
+            <g class="part o2-poor" data-part="right-atrium">
+              <rect x="60" y="138" width="140" height="100" rx="10"/>
+              <text x="130" y="188">Right atrium</text>
+            </g>
+            <g class="part valve" data-part="tricuspid-valve">
+              <rect x="66" y="252" width="128" height="30" rx="15"/>
+              <text class="tiny" x="130" y="267">Tricuspid valve</text>
+            </g>
+            <g class="part o2-poor" data-part="right-ventricle">
+              <rect x="60" y="296" width="140" height="120" rx="10"/>
+              <text x="130" y="356">Right ventricle</text>
+            </g>
+            <g class="part valve" data-part="pulmonary-valve">
+              <rect x="203" y="298" width="18" height="116" rx="9"/>
+              <text class="micro" transform="translate(212 356) rotate(-90)">Pulmonary valve</text>
+            </g>
+            <g class="part o2-poor" data-part="pulmonary-artery">
+              <rect x="224" y="80" width="44" height="320" rx="6"/>
+              <text class="small" transform="translate(246 240) rotate(-90)">Pulmonary artery</text>
+            </g>
+
+            <!-- Left side of the heart (drawn on the right): oxygen-rich blood -->
+            <g class="part o2-rich" data-part="pulmonary-veins">
+              <rect x="290" y="80" width="140" height="40" rx="6"/>
+              <text class="small" x="360" y="100">Pulmonary veins</text>
+            </g>
+            <g class="part o2-rich" data-part="left-atrium">
+              <rect x="290" y="138" width="140" height="100" rx="10"/>
+              <text x="360" y="188">Left atrium</text>
+            </g>
+            <g class="part valve" data-part="mitral-valve">
+              <rect x="296" y="252" width="128" height="30" rx="15"/>
+              <text class="tiny" x="360" y="267">Mitral valve</text>
+            </g>
+            <g class="part o2-rich" data-part="left-ventricle">
+              <rect x="290" y="296" width="140" height="120" rx="10"/>
+              <text x="360" y="356">Left ventricle</text>
+            </g>
+            <g class="part valve" data-part="aortic-valve">
+              <rect x="436" y="298" width="20" height="116" rx="10"/>
+              <text class="micro" transform="translate(446 356) rotate(-90)">Aortic valve</text>
+            </g>
+            <g class="part o2-rich" data-part="aorta">
+              <rect x="462" y="138" width="34" height="340" rx="6"/>
+              <text class="small" transform="translate(479 308) rotate(-90)">Aorta</text>
+            </g>
+          </svg>
+          <figcaption>Drawn as if you're facing the person, so the heart's <strong>right</strong> side is on <strong>your left</strong>.</figcaption>
+        </figure>
+
+        <div class="step-area">
+          <ul class="legend">
+            <li><span class="swatch o2-poor" aria-hidden="true"></span>Oxygen-poor blood</li>
+            <li><span class="swatch o2-rich" aria-hidden="true"></span>Oxygen-rich blood</li>
+            <li><span class="swatch valve" aria-hidden="true"></span>Valve (a one-way door)</li>
+            <li><span class="swatch current" aria-hidden="true"></span>Current step</li>
+          </ul>
+
+          <!-- aria-live: screen readers read out each new step -->
+          <div class="step-panel" aria-live="polite">
+            <p class="step-count" id="step-count"></p>
+            <h3 id="step-name"></h3>
+            <p class="step-oxygen" id="step-oxygen"></p>
+            <p id="step-text"></p>
+          </div>
+
+          <div class="step-controls">
+            <button type="button" class="button" id="step-back">← Back</button>
+            <button type="button" class="button" id="step-next">Next →</button>
+          </div>
+          <p class="hint">Tip: you can also use the ← and → arrow keys.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part 2: ordering quiz -->
+    <section class="quiz" id="quiz" aria-labelledby="quiz-heading">
+      <h2 id="quiz-heading">2. Check yourself</h2>
+      <p>Put these stops in the order blood passes through them, starting where blood first enters the heart. Use the ↑ and ↓ buttons to move a stop.</p>
+
+      <ol class="quiz-list" id="quiz-list"></ol>
+
+      <div class="quiz-controls">
+        <button type="button" class="button" id="quiz-check">Check answer</button>
+        <button type="button" class="button" id="quiz-show">Show correct order</button>
+        <button type="button" class="button" id="quiz-reset">Try again</button>
+      </div>
+      <p class="quiz-result" id="quiz-result" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">More tools coming soon.</div>
+  </footer>
+</body>
+</html>

@@ -99,6 +99,13 @@ a {
   background: var(--surface);
 }
 
+.button:disabled {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
 .theme-toggle {
   flex-shrink: 0;
 }
