@@ -8,8 +8,10 @@
 
 ## Project Structure
 
-The project is nearly empty for now:
-
+- `index.html`: the portal homepage (tool cards)
+- `css/styles.css`: shared styles and theme colors
+- `js/theme.js`: the light/dark theme toggle
+- `tools/tool-1/index.html`: placeholder tool page
 - `README.md`: short project readme
 - `CLAUDE.md`: this file
 
@@ -45,10 +47,13 @@ A web portal where biology students try out small web tools.
 ### Phases
 
 **Phase 1: portal + first tool**
-- Homepage, shared styles and theme toggle.
-- Tool: *Blood Flow Through the Heart*. Students step through the 14
-  stops on a labelled heart diagram (Back/Next), then put 8 key stops
-  in order in a short quiz and get a score.
+- [x] Homepage, shared styles and theme toggle. Tested with a
+  placeholder card, "Tool 1 — coming soon" (`tools/tool-1/`), which
+  opens and links back to the homepage. Styling is neutral for now.
+- [ ] First tool, replacing the placeholder: *Blood Flow Through the
+  Heart*. Students step through the 14 stops on a labelled heart
+  diagram (Back/Next), then put 8 key stops in order in a short quiz
+  and get a score.
 
 **Phase 2: more tools** (to be decided)
 - Add more biology tools, one folder and one card each.
