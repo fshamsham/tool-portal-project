@@ -1,24 +1,32 @@
 /* Styles for the Blood Flow Through the Heart tool.
-   Kept plain; the only extra colors are the blue/red for
-   oxygen-poor/oxygen-rich blood, which are part of the lesson. */
+   Kept plain; the extra colors are the ones the drawing needs:
+   blue/red blood, heart muscle, lungs and valve flaps. */
 
 :root,
 :root[data-theme="light"] {
-  --o2-poor-fill: #d6e2ff;
-  --o2-rich-fill: #ffd9d4;
+  /* Blood colors are the same in both themes; white text sits on them */
+  --blood-poor: #3a6ad0;
+  --blood-poor-edge: #183a80;
+  --blood-rich: #c8392e;
+  --blood-rich-edge: #761710;
+  --drop-poor: #0f2a66;
+  --drop-rich: #5c0c08;
+  --flap: #fff3c4;
+  --muscle: #e8b4ab;
+  --muscle-edge: #9c5f56;
+  --lung: #f5d0d5;
+  --lung-edge: #b98088;
   --neutral-fill: #ececec;
-  --valve-fill: #ffffff;
-  --highlight: #b35900;
   --correct: #1d6b35;
   --incorrect: #a8231b;
 }
 
 :root[data-theme="dark"] {
-  --o2-poor-fill: #1f2f57;
-  --o2-rich-fill: #4d2020;
+  --muscle: #7a4540;
+  --muscle-edge: #b07a72;
+  --lung: #4a2c33;
+  --lung-edge: #8a5a63;
   --neutral-fill: #2c2c2c;
-  --valve-fill: #161616;
-  --highlight: #ffb35c;
   --correct: #7ad69a;
   --incorrect: #ff9a90;
 }
@@ -48,7 +56,7 @@ section {
 .diagram svg {
   display: block;
   width: 100%;
-  max-width: 560px;
+  max-width: 640px;
   height: auto;
   margin: 0 auto;
 }
@@ -60,43 +68,78 @@ section {
   text-align: center;
 }
 
-/* SVG parts */
+/* Drawing */
 
-.part rect {
-  stroke: var(--muted);
+.shape {
   stroke-width: 1.5;
 }
 
-.part.o2-poor rect { fill: var(--o2-poor-fill); }
-.part.o2-rich rect { fill: var(--o2-rich-fill); }
-.part.neutral rect { fill: var(--neutral-fill); }
-.part.valve rect { fill: var(--valve-fill); }
+.o2-poor { fill: var(--blood-poor); stroke: var(--blood-poor-edge); }
+.o2-rich { fill: var(--blood-rich); stroke: var(--blood-rich-edge); }
+rect.o2-poor:not(.shape),
+rect.o2-rich:not(.shape) { stroke: none; }
 
-.part.is-active rect {
-  stroke: var(--highlight);
+.muscle { fill: var(--muscle); stroke: var(--muscle-edge); stroke-width: 2; }
+.lung { fill: var(--lung); stroke: var(--lung-edge); }
+.body-fill { fill: var(--neutral-fill); stroke: var(--muted); }
+
+.flap {
+  fill: none;
+  stroke: var(--flap);
   stroke-width: 5;
+  stroke-linecap: round;
 }
 
-.part text {
+/* The current step: a thick outline, or a ring around a valve */
+.part.is-active .shape {
+  stroke: var(--text);
+  stroke-width: 4;
+}
+
+.ring {
+  display: none;
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 4;
+}
+
+.part.is-active .ring {
+  display: inline;
+}
+
+.label {
   fill: var(--text);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   text-anchor: middle;
   dominant-baseline: central;
 }
 
-.part text.small { font-size: 15px; }
-.part text.tiny { font-size: 14px; }
-.part text.micro { font-size: 13px; }
+/* White names on blood get a faint dark edge, so they stay readable over drops */
+.label.on-blood {
+  fill: #ffffff;
+  stroke: rgba(0, 0, 0, 0.45);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+.label.small { font-size: 14px; }
+.label.start { text-anchor: start; }
+.label.end { text-anchor: end; }
 
-.flow line {
-  stroke: var(--muted);
-  stroke-width: 2;
-  marker-end: url(#arrow);
+.callouts line {
+  stroke: var(--text);
+  stroke-width: 1.5;
 }
 
-.arrow-head {
-  fill: var(--muted);
+.routes path {
+  fill: none;
+  stroke: none;
+}
+
+.drop {
+  stroke: #ffffff;
+  stroke-width: 2;
 }
 
 /* Legend */
@@ -125,10 +168,11 @@ section {
   border-radius: 4px;
 }
 
-.swatch.o2-poor { background: var(--o2-poor-fill); }
-.swatch.o2-rich { background: var(--o2-rich-fill); }
-.swatch.valve { background: var(--valve-fill); }
-.swatch.current { border: 4px solid var(--highlight); }
+.swatch.o2-poor { background: var(--blood-poor); }
+.swatch.o2-rich { background: var(--blood-rich); }
+.swatch.muscle { background: var(--muscle); }
+.swatch.valve { background: var(--flap); }
+.swatch.current { border: 4px solid var(--text); }
 
 /* Step text */
 
@@ -174,7 +218,7 @@ section {
 /* Quiz */
 
 .quiz-list {
-  max-width: 560px;
+  max-width: 640px;
   margin: 16px 0 0;
   padding: 0;
   list-style: none;

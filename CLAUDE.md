@@ -54,7 +54,9 @@ A web portal where biology students try out small web tools.
   opens and links back to the homepage. Styling is neutral for now.
 - [x] First tool, replacing the placeholder: *Blood Flow Through the
   Heart* (`tools/heart-blood-flow/`). Students step through the 14
-  stops on a labelled heart diagram (Back/Next or arrow keys), then
+  stops on a labelled drawing of the heart, lungs and body, with
+  moving blood drops (still drops for visitors whose device is set to
+  reduce motion), using Back/Next or the arrow keys, then
   put 8 key stops in order in a short quiz and get a score. Styling
   is plain for now.
 

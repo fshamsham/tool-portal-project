@@ -32,100 +32,150 @@
 
       <div class="learn-layout">
         <figure class="diagram">
-          <svg viewBox="0 0 500 556" role="img" aria-labelledby="diagram-title diagram-desc">
-            <title id="diagram-title">Simplified diagram of the heart</title>
-            <desc id="diagram-desc">The heart's four chambers, four valves and main blood vessels, with the lungs at the top and the body at the bottom. The part for the current step is outlined.</desc>
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
-                <path class="arrow-head" d="M0 0 L10 5 L0 10 z"/>
-              </marker>
-            </defs>
+          <svg viewBox="0 0 660 655" role="img" aria-labelledby="diagram-title diagram-desc">
+            <title id="diagram-title">Drawing of the heart, lungs and body</title>
+            <desc id="diagram-desc">A front view of the heart showing its four chambers, four valves and main blood vessels, with a lung on each side and the body below. The part for the current step is outlined, and moving dots show blood flowing through it.</desc>
 
-            <!-- Arrows showing which way blood flows -->
-            <g class="flow" aria-hidden="true">
-              <line x1="25" y1="497" x2="25" y2="481"/>
-              <line x1="45" y1="188" x2="58" y2="188"/>
-              <line x1="130" y1="239" x2="130" y2="250"/>
-              <line x1="130" y1="283" x2="130" y2="294"/>
-              <line x1="246" y1="79" x2="246" y2="62"/>
-              <line x1="360" y1="62" x2="360" y2="78"/>
-              <line x1="360" y1="121" x2="360" y2="136"/>
-              <line x1="360" y1="239" x2="360" y2="250"/>
-              <line x1="360" y1="283" x2="360" y2="294"/>
-              <line x1="479" y1="479" x2="479" y2="496"/>
+            <!-- Drawn back to front: things drawn later sit on top. -->
+
+            <!-- Body and lungs -->
+            <g class="part" data-part="body">
+              <rect class="shape body-fill" x="20" y="600" width="620" height="45" rx="14"/>
+            </g>
+            <g class="part" data-part="lungs">
+              <path class="shape lung" d="M120 98 C78 80 28 140 20 230 C14 300 30 362 62 372 C96 380 126 360 128 330 L128 118 C128 104 126 99 120 98 Z"/>
+              <path class="shape lung" d="M540 98 C582 80 632 140 640 230 C646 300 630 362 598 372 C564 380 534 360 532 330 L532 118 C532 104 534 99 540 98 Z"/>
             </g>
 
-            <!-- Each part has a data-part name that heart.js highlights -->
-            <g class="part neutral" data-part="lungs">
-              <rect x="150" y="10" width="280" height="50" rx="25"/>
-              <text x="290" y="35">Lungs</text>
+            <!-- Vessels that pass behind the heart -->
+            <g class="part" data-part="pulmonary-veins">
+              <rect class="shape o2-rich" x="118" y="252" width="60" height="16"/>
             </g>
-            <g class="part neutral" data-part="body">
-              <rect x="6" y="498" width="490" height="50" rx="12"/>
-              <text x="251" y="523">Body</text>
+            <g class="part" data-part="vena-cavae">
+              <rect class="shape o2-poor" x="166" y="340" width="38" height="262"/>
             </g>
 
-            <!-- Right side of the heart (drawn on the left): oxygen-poor blood -->
-            <g class="part o2-poor" data-part="vena-cavae">
-              <rect x="6" y="138" width="38" height="340" rx="6"/>
-              <text class="small" transform="translate(25 308) rotate(-90)">Vena cavae</text>
+            <!-- Heart muscle wall -->
+            <path class="muscle" d="M200 218 C165 220 135 260 135 305 C135 345 150 380 180 430 C220 490 300 540 380 568 C440 520 492 450 488 380 C487 330 484 280 478 245 C470 205 420 198 380 205 C330 210 260 212 200 218 Z"/>
+
+            <!-- Chambers -->
+            <g class="part" data-part="right-atrium">
+              <path class="shape o2-poor" d="M182 240 C155 260 152 335 178 362 C205 385 250 378 265 352 C280 318 272 262 248 240 C228 225 200 228 182 240 Z"/>
             </g>
-            <g class="part o2-poor" data-part="right-atrium">
-              <rect x="60" y="138" width="140" height="100" rx="10"/>
-              <text x="130" y="188">Right atrium</text>
+            <g class="part" data-part="right-ventricle">
+              <path class="shape o2-poor" d="M200 398 C240 388 300 385 325 392 C322 430 335 480 358 525 C300 505 230 465 198 425 Z"/>
             </g>
+            <g class="part" data-part="left-atrium">
+              <path class="shape o2-rich" d="M382 228 C405 214 450 216 465 240 C475 262 468 290 445 300 C420 308 390 304 378 290 C368 272 368 242 382 228 Z"/>
+            </g>
+            <g class="part" data-part="left-ventricle">
+              <path class="shape o2-rich" d="M340 322 C380 312 445 312 460 345 C470 400 450 475 378 545 C360 500 350 440 345 395 C342 370 338 340 340 322 Z"/>
+            </g>
+
+            <!-- Openings between atria and ventricles (where the valves sit) -->
+            <rect class="o2-poor" x="220" y="364" width="38" height="38"/>
+            <rect class="o2-rich" x="403" y="292" width="40" height="36"/>
+
+            <!-- Vessels in front of the heart -->
+            <g class="part" data-part="pulmonary-artery">
+              <path class="shape o2-poor" d="M282 398 L282 182 L115 182 L115 152 L545 152 L545 182 L318 182 L318 398 Z"/>
+            </g>
+            <g class="part" data-part="vena-cavae">
+              <rect class="shape o2-poor" x="185" y="18" width="37" height="236"/>
+            </g>
+            <g class="part" data-part="aorta">
+              <rect class="shape o2-rich" x="389" y="16" width="12" height="70"/>
+              <rect class="shape o2-rich" x="424" y="16" width="12" height="60"/>
+              <rect class="shape o2-rich" x="459" y="16" width="12" height="70"/>
+              <path class="shape o2-rich" d="M330 334 L330 120 C330 45 530 45 530 125 L530 602 L495 602 L495 125 C495 85 365 85 365 125 L365 334 Z"/>
+            </g>
+            <g class="part" data-part="pulmonary-veins">
+              <rect class="shape o2-rich" x="455" y="232" width="85" height="16"/>
+              <rect class="shape o2-rich" x="455" y="270" width="85" height="16"/>
+            </g>
+
+            <!-- Valves: two flaps each; the ring shows when it's the current step -->
             <g class="part valve" data-part="tricuspid-valve">
-              <rect x="66" y="252" width="128" height="30" rx="15"/>
-              <text class="tiny" x="130" y="267">Tricuspid valve</text>
-            </g>
-            <g class="part o2-poor" data-part="right-ventricle">
-              <rect x="60" y="296" width="140" height="120" rx="10"/>
-              <text x="130" y="356">Right ventricle</text>
+              <path class="flap" d="M222 380 Q230 392 234 404 M256 380 Q248 392 244 404"/>
+              <circle class="ring" cx="239" cy="391" r="26"/>
             </g>
             <g class="part valve" data-part="pulmonary-valve">
-              <rect x="203" y="298" width="18" height="116" rx="9"/>
-              <text class="micro" transform="translate(212 356) rotate(-90)">Pulmonary valve</text>
-            </g>
-            <g class="part o2-poor" data-part="pulmonary-artery">
-              <rect x="224" y="80" width="44" height="320" rx="6"/>
-              <text class="small" transform="translate(246 240) rotate(-90)">Pulmonary artery</text>
-            </g>
-
-            <!-- Left side of the heart (drawn on the right): oxygen-rich blood -->
-            <g class="part o2-rich" data-part="pulmonary-veins">
-              <rect x="290" y="80" width="140" height="40" rx="6"/>
-              <text class="small" x="360" y="100">Pulmonary veins</text>
-            </g>
-            <g class="part o2-rich" data-part="left-atrium">
-              <rect x="290" y="138" width="140" height="100" rx="10"/>
-              <text x="360" y="188">Left atrium</text>
+              <path class="flap" d="M284 394 Q292 382 296 372 M316 394 Q308 382 304 372"/>
+              <circle class="ring" cx="300" cy="384" r="26"/>
             </g>
             <g class="part valve" data-part="mitral-valve">
-              <rect x="296" y="252" width="128" height="30" rx="15"/>
-              <text class="tiny" x="360" y="267">Mitral valve</text>
-            </g>
-            <g class="part o2-rich" data-part="left-ventricle">
-              <rect x="290" y="296" width="140" height="120" rx="10"/>
-              <text x="360" y="356">Left ventricle</text>
+              <path class="flap" d="M405 306 Q413 318 417 330 M441 306 Q433 318 429 330"/>
+              <circle class="ring" cx="423" cy="318" r="26"/>
             </g>
             <g class="part valve" data-part="aortic-valve">
-              <rect x="436" y="298" width="20" height="116" rx="10"/>
-              <text class="micro" transform="translate(446 356) rotate(-90)">Aortic valve</text>
+              <path class="flap" d="M332 336 Q340 324 344 314 M363 336 Q356 324 352 314"/>
+              <circle class="ring" cx="348" cy="326" r="26"/>
             </g>
-            <g class="part o2-rich" data-part="aorta">
-              <rect x="462" y="138" width="34" height="340" rx="6"/>
-              <text class="small" transform="translate(479 308) rotate(-90)">Aorta</text>
+
+            <!-- Labels outside the drawing, with pointer lines -->
+            <g class="callouts" aria-hidden="true">
+              <line x1="154" y1="416" x2="222" y2="388"/>
+              <line x1="154" y1="451" x2="284" y2="398"/>
+              <line x1="536" y1="426" x2="441" y2="316"/>
+              <line x1="536" y1="456" x2="364" y2="332"/>
+              <line x1="585" y1="380" x2="545" y2="288"/>
+              <text class="label small end" x="150" y="416">Tricuspid valve</text>
+              <text class="label small end" x="150" y="451">Pulmonary valve</text>
+              <text class="label small start" x="540" y="426">Mitral valve</text>
+              <text class="label small start" x="540" y="456">Aortic valve</text>
+              <text class="label small" x="590" y="394">Pulmonary veins</text>
+            </g>
+
+            <!-- Invisible paths that the blood drops follow, one set per step -->
+            <g class="routes">
+              <path id="r-svc" d="M203 20 L203 252"/>
+              <path id="r-ivc" d="M185 598 L185 400 L200 350"/>
+              <path id="r-ra" d="M203 258 C190 300 210 350 239 372"/>
+              <path id="r-tricuspid" d="M239 366 L239 412"/>
+              <path id="r-rv" d="M239 410 C245 470 300 480 310 440 C315 420 302 410 300 398"/>
+              <path id="r-pulmonary-valve" d="M300 402 L300 360"/>
+              <path id="r-pa-left" d="M300 360 L300 167 L118 167"/>
+              <path id="r-pa-right" d="M300 360 L300 167 L542 167"/>
+              <path id="r-lung-left" d="M118 167 C40 175 36 300 125 260"/>
+              <path id="r-lung-right" d="M542 167 C620 175 624 300 540 259"/>
+              <path id="r-pv-top" d="M540 240 L462 240"/>
+              <path id="r-pv-bottom" d="M540 278 L462 278"/>
+              <path id="r-la" d="M466 262 C430 262 420 280 423 300"/>
+              <path id="r-mitral" d="M423 294 L423 338"/>
+              <path id="r-lv" d="M423 335 C450 430 400 525 378 480 C362 430 350 380 348 345"/>
+              <path id="r-aortic-valve" d="M348 348 L348 300"/>
+              <path id="r-aorta" d="M348 300 L348 125 C348 62 512 62 512 125 L512 600"/>
+              <path id="r-body" d="M512 600 L512 622 L185 622 L185 600"/>
+            </g>
+
+            <!-- heart.js draws the moving blood drops in here -->
+            <g id="drops" aria-hidden="true"></g>
+
+            <!-- Names of the parts, drawn last so the drops never cover them -->
+            <g class="labels" aria-hidden="true">
+              <text class="label" x="330" y="622">Body</text>
+              <text class="label" x="68" y="320">Lung</text>
+              <text class="label" x="592" y="320">Lung</text>
+              <text class="label on-blood small" transform="translate(185 525) rotate(-90)">Inferior vena cava</text>
+              <text class="label on-blood" x="215" y="305">Right atrium</text>
+              <text class="label on-blood" x="282" y="436"><tspan x="282">Right</tspan><tspan x="282" dy="17">ventricle</tspan></text>
+              <text class="label on-blood small" x="420" y="258">Left atrium</text>
+              <text class="label on-blood" x="405" y="408"><tspan x="405">Left</tspan><tspan x="405" dy="17">ventricle</tspan></text>
+              <text class="label on-blood small" transform="translate(300 285) rotate(-90)">Pulmonary artery</text>
+              <text class="label on-blood small" transform="translate(203 95) rotate(-90)">Superior vena cava</text>
+              <text class="label on-blood small" transform="translate(512 340) rotate(-90)">Aorta</text>
             </g>
           </svg>
-          <figcaption>Drawn as if you're facing the person, so the heart's <strong>right</strong> side is on <strong>your left</strong>.</figcaption>
+          <figcaption>A simplified drawing, as if you're facing the person, so the heart's <strong>right</strong> side is on <strong>your left</strong>. The moving dots are blood.</figcaption>
         </figure>
 
         <div class="step-area">
           <ul class="legend">
             <li><span class="swatch o2-poor" aria-hidden="true"></span>Oxygen-poor blood</li>
             <li><span class="swatch o2-rich" aria-hidden="true"></span>Oxygen-rich blood</li>
-            <li><span class="swatch valve" aria-hidden="true"></span>Valve (a one-way door)</li>
-            <li><span class="swatch current" aria-hidden="true"></span>Current step</li>
+            <li><span class="swatch muscle" aria-hidden="true"></span>Heart muscle</li>
+            <li><span class="swatch valve" aria-hidden="true"></span>Valve flaps (one-way doors)</li>
+            <li><span class="swatch current" aria-hidden="true"></span>Current step (thick outline)</li>
           </ul>
 
           <!-- aria-live: screen readers read out each new step -->
